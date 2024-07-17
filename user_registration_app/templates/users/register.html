@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+    <div class="col-md-8 m-auto border border-info mt-3 p-3 rounded">
+        <h2>{{type}} Form</h2>
+        <hr>
+
+        <div>
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+
+               {{form|crispy}}
+               <hr>
+                <div class="text-center">
+                    <button class="btn btn-outline-danger mt-2 w-50 text-dark">{{type}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock content %}

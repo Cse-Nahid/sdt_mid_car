@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content  %}
+
+<div class="row mt-3">
+    <div class="col-md-6">
+        <div>
+            <img class="rounded mt-3 w-100" src="{% static "images/car.jpg" %}" alt="">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h3 class="text-success mb-4">BEST CAR FOR BANGLADESH</h3>
+        <p>Large-scale, production-line manufacturing of affordable cars was started by Ransom Olds in 1901 at his Oldsmobile factory in Lansing, Michigan, and based upon stationary assembly line techniques pioneered by Marc Isambard Brunel at the Portsmouth Block Mills, England, in 1802. The assembly line style of mass production and interchangeable parts had been pioneered in the US by Thomas Blanchard in 1821, at the Springfield Armory in Springfield, Massachusetts.[43] This concept was greatly expanded by Henry Ford, beginning in 1913 with the world's first moving assembly line for cars at the Highland Park Ford Plant.</p>
+    </div>
+</div>
+
+
+{% include "cars/cars.html" %}
+
+{% endblock content  %}

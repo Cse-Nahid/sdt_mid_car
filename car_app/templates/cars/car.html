@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        {% if car.image %}
+        <img class="w-100 rounded" src="{{car.image.url}}" alt="">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+
+        <h3 class="text-primary">{{car.name}}</h3>
+        <p class="fst-italic text-dark">{{car.brand}}</p>
+        
+        <hr>
+        <h6 class="text-success">Price: {{car.price }}</h6>
+        <hr>
+        <h6 class="text-info">Quanity: {{car.quantity }} Piece{{car.quantity | pluralize }}</h6>
+        <hr>
+        <small class="text-dark">Desciption: </small>
+        <small>{{car.description }}</small>
+       
+        <hr>
+        <p><a class="btn btn-success btn-outline-light mx-2 px-5 w-100 text-dark" href="{% url "buy_car" car.id %}"><i class="fa-solid fa-cart-shopping"></i> Buy Now</a></p>
+       
+    </div>
+</div>
+<hr><hr>
+
+<div class="row">
+    <div class="col-md-6 border border-dark p-3 rounded">
+        <h4>Add a new comment... </h4>
+        <hr>
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{comment_form|crispy}}
+                <button class="btn btn-warning btn-outline-light px-5 text-dark">Comment</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 border border-dark p-3 rounded">
+        {% if car.comments.count == 0 %}
+            <h4>No Comments...</h4>
+        {% else %}
+        <h4>{{ car.comments.count }} comment{{ car.comments.count|pluralize }}</h4>
+
+            
+        {% endif %}
+        <hr>
+        {% for comment in car.comments.all %}
+            <div class="comment border border-light rounded p-3" >
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="text-success fst-italic">{{comment.name}}</h5>
+                    </div>
+                    <div class="col-md-6  text-end">
+                        <small class="text-end">{{comment.created_at}}</small>
+    
+                    </div>
+                </div>
+                <small class="text-start">{{comment.email}}</small>
+                
+                <hr>
+                <p>{{comment.comment}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+</div> 
+
+
+{% endblock content %}
